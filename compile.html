@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>编辑页面</title>
+
+	<link rel="stylesheet" type="text/css" href="50.css">
+</head>
+<body>
+	<header class="head">
+		<span class="head_log">问卷管理</span>
+		<span class="my_fifle">我的问卷</span>
+	</header>
+	<article class="compile_body">
+		<div class="compile_title_box">
+			<input type="text" name="" class="compile_title" placeholder="请输入标题">
+		</div>  <!-- 标题 -->
+		<div class="compile_box">  <!-- 编辑区 -->
+			<div id="createArea"></div>
+			<div class="compile_space">
+				<!--  存放选项的区域 单选 多选 文本. -->
+				<div class="compile_space_hidebutton">
+					<button id='compile_radio'>单选</button>
+					<button id='compile_multiple'>多选</button>
+					<button id="compile_textbox">文本框</button>
+				</div> 
+				<div class="compile_button">
+					<span class="absolute_center">添加问题</span>
+				</div>
+			</div> <!-- 编辑按钮区域 -->
+		</div>
+		<div class="button_body">
+			<label>问卷截止日期</label>
+			<div id="date_box"></div> <!-- 存放日历的位置 -->
+			<button class="button button_style_white">保存问卷</button>
+			<button class="button button_style_blue">发布问卷</button>
+		</div>   <!-- 问卷截止日 和保存问卷发布问卷的位置 -->
+	</article>
+	<script type="text/javascript" src='../jquery-3.1.0.js'></script>
+	<script type="text/javascript" src='listen.js'></script>
+	<script type="text/javascript" src='compile_choice_model.js'></script>
+	<script type="text/javascript" src="./date.js"></script>
+	
+</body>
+</html>

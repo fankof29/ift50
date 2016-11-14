@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>开始页面</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+	
+</head>
+<body>
+<!-- 建立两个大的div 一个是在总数组不为零的时候出现,另一个在总数组为零的时候出现
+ -->
+	<header class="head">
+		<span class="head_log">问卷管理</span>
+		<span class="my_fifle">我的问卷</span>
+	</header>
+	<article class="compile_body">
+		<div class="create_question_body">
+			<button>新建问卷</button>
+		</div>  <!-- 为零的时候出现 -->
+		<div class="compile_body"> <!-- 当数组中有数据的时候出现 -->
+			<div class="compile_from_title ">
+				<span class="compile_body_span_title">标题</span>
+				<span class="compile_body_span_time">时间</span>
+				<span class="compile_body_span_state">状态</span>
+				<span class="compile_body_span_operation">操作</span>
+				<button class="compile_body_span_button">新建问卷</button> 
+			</div> <!-- 标题区域 -->
+			<div id="all_form_area">
+				
+			</div>	 <!-- 表单区 -->
+			<div class="all_select_area">
+				<input type="checkbox" name="" id = "all_select">
+				<label>全选</label>
+
+				<button>删除</button> 
+			</div>	 <!-- 全选区 -->
+		</div>
+	</article>
+	<script type="text/javascript" src='../jquery-3.1.0.js'></script>
+	<script type="text/javascript" src='index.js'></script>
+ </body>
+</html>
