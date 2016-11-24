@@ -11,18 +11,19 @@
 // 数据生成函数
 
 function CompileDateCenter(index,createArea){
-	this.index = index || null; //代表总数组的第几个数组
+	this.index = index; //代表总数组的第几个数组
 	this.createArea =  createArea;//存放创建后的选项的区域
 	this.init();//初始化,对transfer.arrbox进行处理 
-	$(document).off();//解除所有绑定事件防止重复绑定
 	this.even();
 	//加载所有的触发事件
 }
 
 CompileDateCenter.prototype = {
 	 //用来存储信息
+
+	save:false,//用来判断是否保存
 	init:function() {
-		if(transfer.arrbox[0].title) {//如果是将传递进来的编辑
+		if(this.index !== null) {//如果是将传递进来的编辑
 			$('.compile_title_box input').val(transfer.arrbox[0].title),
 			$('#date_box input').val(transfer.arrbox[0].time);
 
@@ -38,11 +39,12 @@ CompileDateCenter.prototype = {
 		var obj = {
 			type:'radio',
 			name:'单选',
-			box:['选项','选项']
+			box:['选项','选项'],
+			data:[0,0]
 		};
 
 		transfer.arrbox.push(obj);
-
+		console.log(transfer.arrbox)
 		self.createBox(transfer.arrbox);
 	},
 
@@ -52,7 +54,8 @@ CompileDateCenter.prototype = {
 		var obj = {
 			type:'checkbox',
 			name:'多选',
-			box:['选项','选项','选项','选项']
+			box:['选项','选项','选项','选项'],
+			data:[0, 0, 0, 0]
 		};
 		transfer.arrbox.push(obj);
 
@@ -66,6 +69,8 @@ CompileDateCenter.prototype = {
 			type:'textarea',
 			name:'文本',
 			text:'',
+			box:['填写','未填写'],
+			data:[0, 0],
 			required:'false'
 		};
 		transfer.arrbox.push(obj);
@@ -75,6 +80,8 @@ CompileDateCenter.prototype = {
 
 	createBox:function(arr){ //根据传递进来的数组创建选项
 		var self = this
+		//解除所有绑定事件防止重复绑定
+		
 		self.createArea.html('');
 		for(let i = 0,length = arr.length; i < length; i ++) {
 			switch(arr[i].type) {
@@ -472,6 +479,8 @@ CompileDateCenter.prototype = {
 			.index($(target).parent());
 
 			transfer.arrbox[index].box.push('选项');
+			transfer.arrbox[index].data.push(0);
+			console.log(transfer.arrbox)
 			self.createBox(transfer.arrbox);
 		
 	},
@@ -487,7 +496,7 @@ CompileDateCenter.prototype = {
 			bigIndex = $('.createArea_main_box').index($(target).parent().parent()),
 			index = $(target).parent().parent().find('div').index($(target).parent())
 
-		transfer.arrbox[bigIndex].box[index] = $(target).val();
+		transfer.arrbox[bigIndex].box[index-1] = $(target).val();
 		
 	},
 	mustSelect:function(e){//必选
@@ -498,7 +507,7 @@ CompileDateCenter.prototype = {
 
 		console.log(transfer.arrbox)
 	},
-	saveButton:function(){//点击后保存数据到sessionStorage.bigArr
+	saveButton:function() {//点击后保存数据到sessionStorage.bigArr
 		//保存标题名词 和事件
 		var title = $('.compile_title_box input').val(),
 			date = $('#date_box input').val();
@@ -507,10 +516,52 @@ CompileDateCenter.prototype = {
 			alert('请输入标题');
 		} else if (date === '') {
 			alert('请选择日期');
+		} else if (this.save === true) {
+			return false;
 		} else {
+			var obj = { //记录标题和日期
+				title:title,
+				time:date,
+				state:"on"
+			}
+			//更新数组,根据有无index选择,将新数组加入到bigArr的哪个位置.
+			transfer.arrbox.unshift(obj)
+
+			if(this.index === null) {//添加到总数组的后面
+				var oldBigArr = JSON.parse(sessionStorage.bigArr);
+
+				oldBigArr.push(transfer.arrbox);
+				jsonOldBigArr = JSON.stringify(oldBigArr);
+
+				sessionStorage.bigArr = jsonOldBigArr;
+				sessionStorage.tempArr = null;
+				this.save = true;
+				alert('保存成功');
+			} else {
+				var oldBigArr = JSON.parse(sessionStorage.bigArr);
+
+				
+				oldBigArr[this.index] = transfer.arrbox;
+				jsonOldBigArr = JSON.stringify(oldBigArr);
+
+				sessionStorage.bigArr = jsonOldBigArr;
+				sessionStorage.tempArr = null;
+				sessionStorage.transferIndex = null;
+				this.save = true;
+				alert('保存成功');
+			}
+
 			
 		}
 
+	},
+	publishButton:function() {
+		if(this.save === false) {
+			alert('保存数据后再发布')
+		} else {
+			this.save =false;
+			window.location.href="./index.html";		
+		}
 	},
 	even:function() {
 		var self = this;
@@ -580,6 +631,11 @@ CompileDateCenter.prototype = {
 		//点击后提交数据
 		$(document).on('click','.button_style_white',function(){
 			self.saveButton();
+			
+		})
+		//点击后发布数据
+		$(document).on('click','.button_style_blue', function() {
+			self.publishButton();
 		})
 	}
 }
