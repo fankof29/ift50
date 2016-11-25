@@ -128,6 +128,26 @@ body {
 	float: right;
 	cursor: pointer;
 }
+.red_x {
+	display: inline-block;
+	width: 12px;
+	height: 2px;
+	background: #f00;
+	font-size: 0;
+	line-height: 0;
+	vertical-align: middle;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+.red_x::after {
+	    content: '';
+	    display: block;
+	    width: 12px;
+	    height: 2px;
+	    background: #f00;
+	    -webkit-transform: rotate(-90deg);
+	}
+}
 .compile_space {  /*存放点击后添加问题的div的样式*/
 	margin: 0 auto;
 	width:600px;
@@ -148,13 +168,16 @@ body {
 }
 
 #compile_radio {
-	background-image: url();
+	background-color: white;
+	border: 1px solid #000;
 }
 #compile_multiple {
-	background-image: url();
+	background-color: white;
+	border: 1px solid #000;
 }
 #compile_textbox {
-	background-image: url();
+	background-color: white;
+	border: 1px solid #000;
 }
 .absolute_center {
 	position: absolute;
@@ -203,7 +226,7 @@ body {
 }
 .button_style_blue {
 	margin-left: 40px;
-	border-color: inherit;
+	border-color: #3476C5;
 	background-color: #3476C5;
 	color: white;
 }
@@ -259,4 +282,21 @@ body {
 	
 
 	margin-left: 140px
+}
+
+
+
+
+/*
+ * 触发事件后更改的样式
+ */
+/*让字体变成蓝色*/
+.bule_text {
+	color: #3476C5;
+}
+
+/*添加背景阴影*/
+
+.box_shadow {
+	box-shadow: 1px 1px 1px 1px #3476C5;
 }

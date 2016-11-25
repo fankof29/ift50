@@ -70,8 +70,7 @@ CompileDateCenter.prototype = {
 			name:'文本',
 			text:'',
 			box:['填写','未填写'],
-			data:[0, 0],
-			required:'false'
+			data:[0, 0]
 		};
 		transfer.arrbox.push(obj);
 
@@ -105,10 +104,12 @@ CompileDateCenter.prototype = {
 							.addClass('createArea_input_select')
 							.css('marginBottom','10px')
 							.appendTo(divinput);
-						var inuptDele = $('<span>')
-							.html('点击删除')
+						var delespan = $("<span>")
 							.css('cursor','pointer')
-							.appendTo(divinput);
+							.appendTo(divinput)
+						var red_x = $('<b>')
+							.addClass("red_x")
+							.appendTo(delespan);
 					}
 					//如果是第一个 不生成上移 如果是最后一个不生成下移
 					$('<div>') //添加一个div 作为点击后增加一个选项 只限于多选 和单选出现
@@ -294,10 +295,7 @@ CompileDateCenter.prototype = {
 						.attr('value',arr[i].name)
 						.css('marginBottom','10px')
 						.appendTo(text);
-					var mustSelect = $('<span>')
-						.html('此题是否必填')
-						.addClass('createArea_textArea_mustSelect')
-						.appendTo(text)
+
 
 					var textAreaBox = $('<textarea>')
 						.addClass('createArea_textArea')
@@ -499,14 +497,6 @@ CompileDateCenter.prototype = {
 		transfer.arrbox[bigIndex].box[index-1] = $(target).val();
 		
 	},
-	mustSelect:function(e){//必选
-		var target = e.target,
-			index = $('.createArea_main_box').index($(target).parent().parent())
-
-		transfer.arrbox[index].required = 'true';
-
-		console.log(transfer.arrbox)
-	},
 	saveButton:function() {//点击后保存数据到sessionStorage.bigArr
 		//保存标题名词 和事件
 		var title = $('.compile_title_box input').val(),
@@ -555,6 +545,7 @@ CompileDateCenter.prototype = {
 		}
 
 	},
+	//发布数据
 	publishButton:function() {
 		if(this.save === false) {
 			alert('保存数据后再发布')
@@ -563,6 +554,7 @@ CompileDateCenter.prototype = {
 			window.location.href="./index.html";		
 		}
 	},
+
 	even:function() {
 		var self = this;
 		$(document).on('click','.createArea_input_select + span',function(e){
@@ -610,10 +602,7 @@ CompileDateCenter.prototype = {
 		$(document).on('change','.createArea_input_select',function(e) {
 			self.changeSelect(e);
 		});
-		//选择文本框是否必选
-		$(document).on('click','.createArea_textArea_mustSelect',function(e) {
-			self.mustSelect(e)
-		})
+
 		//单选事件
 		$(document).on('click','#compile_radio',function(){
 			self.radiobox();
@@ -636,6 +625,42 @@ CompileDateCenter.prototype = {
 		//点击后发布数据
 		$(document).on('click','.button_style_blue', function() {
 			self.publishButton();
+		})
+		//单选 多选 文本框 生成按钮的mouseenter事件带来的样式更改
+		$(document).on('mouseenter','#compile_radio, #compile_multiple, #compile_textbox', function(e) {
+			$(e.target)
+			.css('border',"1px solid #3476C5")
+			.css("color", "#3476C5");
+		})
+
+		//单选 多选 文本框 生成按钮的mouseleave事件带来的样式更改
+		$(document).on("mouseleave", "#compile_radio, #compile_multiple, #compile_textbox", function(e) {
+			$(e.target)
+			.css("border", "1px solid #000")
+			.css("color", "#000");
+		})
+
+		//保存问卷 发布问卷的mouseenter带来的样式更改
+		$(document).on("mouseenter", '.button_style_white, .button_style_blue', function(e) {
+			$(e.target)
+			.css('box-shadow','1px 1px 3px #3476C5');
+		})
+
+		//保存问卷 发布问卷的mouseleave带来的样式更改
+		$(document).on('mouseleave', '.button_style_white, .button_style_blue', function(e) {
+			$(e.target)
+			.css('box-shadow','none');
+		})
+
+		//上移 复用 删除 下移 mouseenter 和 mouseleave 事件.
+		$(document).on("mouseenter mouseleave", ".createArea_four_button",function() {
+			$(this).toggleClass("bule_text ");
+		})
+
+		//增加选项按钮 mouseenter 加入一个阴影 mouseleave去掉阴影
+
+		$(document).on("mouseenter mouseleave", ".createArea_add_select", function() {
+			$(this).toggleClass("box_shadow")
 		})
 	}
 }
