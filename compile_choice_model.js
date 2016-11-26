@@ -200,16 +200,18 @@ CompileDateCenter.prototype = {
 						.appendTo(text);
 
 					for(let a = 0, length = arr[i].box.length; a < length; a++) { //生成选项
-												var divinput = $('<div>').appendTo(div);//存放选项的div
+						var divinput = $('<div>').appendTo(div);//存放选项的div
 						var inputbox = $('<input>')
 							.attr('value',arr[i].box[a])
 							.addClass('createArea_input_select')
 							.css('marginBottom','10px')
 							.appendTo(divinput);
-						var inuptDele = $('<span>')
-							.html('点击删除')
+						var delespan = $("<span>")
 							.css('cursor','pointer')
-							.appendTo(divinput);
+							.appendTo(divinput)
+						var red_x = $('<b>')
+							.addClass("red_x")
+							.appendTo(delespan);
 					}
 					//如果是第一个 不生成上移 如果是最后一个不生成下移
 					$('<div>') //添加一个div 作为点击后增加一个选项 只限于多选 和单选出现
@@ -660,7 +662,7 @@ CompileDateCenter.prototype = {
 		//增加选项按钮 mouseenter 加入一个阴影 mouseleave去掉阴影
 
 		$(document).on("mouseenter mouseleave", ".createArea_add_select", function() {
-			$(this).toggleClass("box_shadow")
+			$(this).toggleClass("button_shadow ")
 		})
 	}
 }

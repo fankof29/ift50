@@ -59,6 +59,7 @@ li {
 }
 
 .form_area {
+	margin-bottom: 10px;
 	box-sizing: content-box;
 	padding: 10px;
 	border: 1px solid #ccc;
@@ -87,6 +88,12 @@ li {
 
 	width: 100px;
 	height: 40px;
+
+	border-style: none;
 	background-color: #3476C5;
 	color: white;
+	cursor:pointer;
+
+
 }
+

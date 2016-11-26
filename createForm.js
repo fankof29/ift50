@@ -58,11 +58,14 @@ CreateFrom.prototype = {
 					.appendTo(context);
 			var radio = $('<input>')
 						.attr('type','radio')
-						.attr('name',transfer.arrbox[i].name + i)
+						.attr('name',transfer.arrbox[i].name)
 						.attr('value', l)
+						.attr('id',transfer.arrbox[i].name + l)
+						.css('margin-right','10px')
 						.appendTo(li)
 			var label = $('<label>')
 						.html(transfer.arrbox[i].box[l])
+						.attr('for',transfer.arrbox[i].name + l)
 						.appendTo(li)
 		}
 
@@ -82,12 +85,15 @@ CreateFrom.prototype = {
 		for(let l = 0; l < transfer.arrbox[i].box.length; l++) {
 			var li = $('<li>')
 					.appendTo(context);
-			var radio = $('<input>')
+			var checkbox = $('<input>')
 						.attr('type','checkbox')
-						.attr('name',transfer.arrbox[i].name + i)
-						.attr('value', l)
+						.attr('name',transfer.arrbox[i].name + l)
+						.attr('value',l)
+						.attr('id',transfer.arrbox[i].name + l)
+						.css('margin-right','10px')
 						.appendTo(li)
 			var label = $('<label>')
+						.attr('for',transfer.arrbox[i].name + l)
 						.html(transfer.arrbox[i].box[l])
 						.appendTo(li)
 		}
@@ -99,6 +105,7 @@ CreateFrom.prototype = {
 
 		var titleDiv = $('<div>')
 						.html('Q' + i +'&nbsp;&nbsp;'+transfer.arrbox[i].name)
+						.css('margin-bottom','6px')
 						.appendTo(div);
 
 		var textarea = $('<textarea>')
@@ -116,6 +123,31 @@ CreateFrom.prototype = {
 		 	self.collectingDate();
 		 })
 
+
+		 // 提交问卷的按钮 Mouseenter 和 mouseleave 触发的事件
+
+		 $(".button_box button").on({
+		 	mouseenter: function() {
+		 		$(this).css('box-shadow','1px 1px 4px #3476C5')
+		 	},
+		 	mouseleave: function() {
+		 		$(this).css('box-shadow','none')
+		 	}
+		 }
+		 )
+
+
+		 //鼠标移动到某个选项框 改选项框的颜色就会变色
+
+		 $('.form_area').on({
+		 	mouseenter:function() {
+		 		$(this).css('border','1px solid #3476C5')
+		 	},
+
+		 	mouseleave: function() {
+		 		$(this).css("border","1px solid #ccc")
+		 	}
+		 })
 	},
 	collectingDate: function() {
 		//处理所有的选项
