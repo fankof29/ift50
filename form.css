@@ -54,23 +54,18 @@ li {
 	font-size: 30px
 }
 #form_create {
-	box-sizing: content-box;
+	box-sizing: border-box;
 	padding: 40px;
 }
 
 .form_area {
 	margin-bottom: 10px;
-	box-sizing: content-box;
+	box-sizing: border-box;
 	padding: 10px;
 	border: 1px solid #ccc;
 	
 }
-.createArea_textArea {
-	margin-left: 40px;
-	height: 150px;
-	width: 420px;
-	resize: none;
-}
+
 
 .button_box {
 	position: relative;
@@ -94,6 +89,43 @@ li {
 	color: white;
 	cursor:pointer;
 
+
+}
+
+@media screen and (min-width:1200px) {
+	.compile_body {
+		margin: 40px auto;
+		width: 800px;
+		box-sizing: border-box;
+
+		background-color: white;
+		border-radius: 2px;
+		box-shadow: 0 2px 5px 2px #BBBBBB;
+	}
+	.createArea_textArea {
+		margin-left: 40px;
+		height: 150px;
+		width: 420px;
+		resize: none;
+	}
+}
+
+@media  screen and (min-width: 320px) and (max-width:1200px) {
+	.compile_body {
+		margin: 20px auto;
+		width: 70%;
+		box-sizing: border-box;
+
+		background-color: white;
+		border-radius: 2px;
+		box-shadow: 0 2px 5px 2px #BBBBBB;
+	}
+	.createArea_textArea {
+		margin-left: 40px;
+		height: 150px;
+		width: 60%;
+		resize: none;
+	}
 
 }
 
