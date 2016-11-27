@@ -6,7 +6,10 @@
 body {
 	background-color:#EFEFEF; 
 }
-
+a {
+	text-decoration: none;
+	color: #fff;
+}
 /*编译部分的样式*/
 
 .head {

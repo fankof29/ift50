@@ -6,6 +6,10 @@
 body {
 	background-color:#EFEFEF; 
 }
+a {
+	text-decoration: none;
+	color: #fff;
+}
 .head {
 	width: 100%;
 	height: 50px;
@@ -78,4 +82,5 @@ body {
 	height: 40px;
 	background-color: #3476C5;
 	color: white;
+	border-style: none;
 }

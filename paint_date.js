@@ -290,7 +290,17 @@ var event = {
 
 
 createChart.init(transfer)
-
+//点击后返回创建页面
 $('.button_box button').on('click', function() {
 	event.returnEvent();
 })
+//鼠标的mouseenter mouseleave 触发样式改变
+$(".button_box button").on({
+	mouseenter: function() {
+		$(this).css('box-shadow','1px 1px 4px #3476C5')
+	},
+	mouseleave: function() {
+		$(this).css('box-shadow','none')
+	}
+}
+)
