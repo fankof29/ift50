@@ -96,6 +96,7 @@ var createChart = {
 		var div = $('<div>')
 					.addClass('pie_chart')
 					.appendTo(this.canvasbox);
+
 		var h = $('<h1>')
 					.html(arr.name)
 					.appendTo(div)
@@ -259,6 +260,7 @@ var createChart = {
 	 * ctx: 要绘制的canvas
 	 * index: 对应charbox中数据的位置 
 	 * precent: 百分比用来生成
+	 * 函数为 绘制直方图的文字注释
 	 */
 	createBar: function(ctx, precent, index) {
 		precent = Math.round(precent * 100)/100;

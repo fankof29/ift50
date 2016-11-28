@@ -33,7 +33,7 @@ CompileDateCenter.prototype = {
 			this.createBox(transfer.arrbox);
 		}
 	},
-	radiobox:function() {//生成单选所需要的                                                   资料,然后将资料加入到总数组,然后把总数组传递给生成样式的函数.
+	radiobox:function() {//生成单选所需要的数据                                                  资料,然后将资料加入到总数组,然后把总数组传递给生成样式的函数.
 		var self = this;
 
 		var obj = {
@@ -48,7 +48,7 @@ CompileDateCenter.prototype = {
 		self.createBox(transfer.arrbox);
 	},
 
-	checkbox:function() {
+	checkbox:function() {//生成多选所需要的数据
 		var self = this;
 
 		var obj = {
@@ -62,7 +62,7 @@ CompileDateCenter.prototype = {
 		self.createBox(transfer.arrbox);
 	},
 
-	textbox:function() {
+	textbox:function() {//生成文本所需要的数据
 		var self = this;
 
 		var obj = {
@@ -78,8 +78,7 @@ CompileDateCenter.prototype = {
 	},
 
 	createBox:function(arr){ //根据传递进来的数组创建选项
-		var self = this
-		//解除所有绑定事件防止重复绑定
+		var self = this;
 		
 		self.createArea.html('');
 		for(let i = 0,length = arr.length; i < length; i ++) {
@@ -98,7 +97,7 @@ CompileDateCenter.prototype = {
 						.appendTo(text);
 
 					for(let a = 0, length = arr[i].box.length; a < length; a++) { //生成选项
-												var divinput = $('<div>').appendTo(div);//存放选项的div
+						var divinput = $('<div>').appendTo(div);//存放选项的div
 						var inputbox = $('<input>')
 							.attr('value',arr[i].box[a])
 							.addClass('createArea_input_select')

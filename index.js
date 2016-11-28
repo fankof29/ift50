@@ -5,8 +5,8 @@
 
 // 根据总数组,创建表单的目录.
 sessionStorage.transferIndex = null;//临时索引
-sessionStorage.tempArr = null;
-console.log(sessionStorage.bigArr)
+sessionStorage.tempArr = null; //临时数组
+
 if(sessionStorage.bigArr == undefined) { //如果bigArr没定义,初始化
 	var box = [];
 	sessionStorage.bigArr = JSON.stringify(box);
@@ -16,7 +16,9 @@ if(sessionStorage.bigArr == undefined) { //如果bigArr没定义,初始化
 }
 
 
-
+/*
+ * contain: 用来装生成数据的div
+ */
 function CreateFormIndex(contain) {
 	this.contain = contain;
 	this.init();//初始化

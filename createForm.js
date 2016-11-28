@@ -58,14 +58,14 @@ CreateFrom.prototype = {
 					.appendTo(context);
 			var radio = $('<input>')
 						.attr('type','radio')
-						.attr('name',transfer.arrbox[i].name)
+						.attr('name',transfer.arrbox[i].name + i)
 						.attr('value', l)
-						.attr('id',transfer.arrbox[i].name + l)
+						.attr('id',transfer.arrbox[i].name + i + l)
 						.css('margin-right','10px')
 						.appendTo(li)
 			var label = $('<label>')
 						.html(transfer.arrbox[i].box[l])
-						.attr('for',transfer.arrbox[i].name + l)
+						.attr('for',transfer.arrbox[i].name + i + l)
 						.appendTo(li)
 		}
 
@@ -87,13 +87,13 @@ CreateFrom.prototype = {
 					.appendTo(context);
 			var checkbox = $('<input>')
 						.attr('type','checkbox')
-						.attr('name',transfer.arrbox[i].name + l)
+						.attr('name',transfer.arrbox[i].name + i)
 						.attr('value',l)
-						.attr('id',transfer.arrbox[i].name + l)
+						.attr('id',transfer.arrbox[i].name + i + l)
 						.css('margin-right','10px')
 						.appendTo(li)
 			var label = $('<label>')
-						.attr('for',transfer.arrbox[i].name + l)
+						.attr('for',transfer.arrbox[i].name + i + l)
 						.html(transfer.arrbox[i].box[l])
 						.appendTo(li)
 		}
