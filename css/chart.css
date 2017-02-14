@@ -4,7 +4,7 @@
 	font: 14px/1.5 '微软雅黑';
 }
 body {
-	background-color:#EFEFEF; 
+	background-color:#EFEFEF;
 }
 a {
 	text-decoration: none;
@@ -25,7 +25,7 @@ a {
 
 	font-size: 20px;
 	color: white;
-	
+
 }
 
 .my_fifle {
@@ -83,4 +83,10 @@ a {
 	background-color: #3476C5;
 	color: white;
 	border-style: none;
+}
+.button_box button .return {
+	display: inline-block;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
 }
